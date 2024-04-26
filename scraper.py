@@ -35,7 +35,7 @@ class GET_CONTENT(object):
         r = session.get(url)
         # check request status
         while r.status_code != 200:
-            r = requests.get(url)
+            r = requests.get(url, timeout=60)
         # return content
         return BeautifulSoup(r.content, 'html.parser')
 
