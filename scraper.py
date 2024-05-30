@@ -10,7 +10,8 @@ from unidecode import unidecode
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import re,time
+import re
+from security import safe_requests
 
 
 # =============================================================================
@@ -35,7 +36,7 @@ class GET_CONTENT(object):
         r = session.get(url)
         # check request status
         while r.status_code != 200:
-            r = requests.get(url)
+            r = safe_requests.get(url)
         # return content
         return BeautifulSoup(r.content, 'html.parser')
 
